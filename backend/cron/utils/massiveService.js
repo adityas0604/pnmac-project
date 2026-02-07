@@ -1,7 +1,9 @@
 import { restClient } from '@massive.com/client-js';
 import { withRetry } from '../../shared/retry.js';
+import { MASSIVE_API_KEY } from '../../shared/variables.js';
 
-const apiKey = process.env.MASSIVE_API_KEY;
+
+const apiKey = MASSIVE_API_KEY;
 const rest = restClient(apiKey, 'https://api.massive.com');
 
 const _getStocksOpenClose = async (ticker, date) => {

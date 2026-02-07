@@ -1,36 +1,40 @@
 import { WATCHLIST } from "../../shared/variables.js";
 import { getStocksOpenClose } from "./massiveService.js";
+import { insertWinnerData } from "./db.js";
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
 export const ingestWinner = async () => {
     const completeStocksData = []
 
-    const utcDateString = getPreviousETDate();
+    const dateString = getPreviousETDate();
     
     let percentageChange = 0;
-    let winner = { percentageChange: 0 };
+    let winner = { PercentageChange: 0 };
     let stockData = null;
     for (const ticker of WATCHLIST) {
         try {
-        stockData = await getStocksOpenClose(ticker, utcDateString);
+        stockData = await getStocksOpenClose(ticker, dateString);
         } catch (e) {
             console.error('An error happened:', e);
             throw e;
         }
         percentageChange = computerPercentageChange(stockData.close, stockData.open);
-        if (Math.abs(percentageChange) > Math.abs(winner.percentageChange)) {
+        if (Math.abs(percentageChange) > Math.abs(winner.PercentageChange)) {
             winner = {
-                ticker: ticker,
-                percentageChange: percentageChange,
-                open: stockData.open,
-                close: stockData.close,
-                
+                Ticker: ticker,
+                PercentageChange: percentageChange,
+                Open: stockData.open,
+                Close: stockData.close,
             };
         }
     }
-    console.log(winner);
-    return winner
+    winner.Date = dateString;
+
+    await insertWinnerData(winner);
+
+    return true;
+
 }
 
 const computerPercentageChange = (close, open) => {

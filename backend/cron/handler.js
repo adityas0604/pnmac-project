@@ -3,14 +3,12 @@ import { ingestWinner } from './utils/ingestWinner.js';
 
 export const ingestDailyWinnerCron = async () => {
     try {
-        const completeStocksData = await ingestWinner();
-        console.log(completeStocksData);
+        const result = await ingestWinner();
+        console.log(result);
     } catch (e) {
         console.error('An error happened:', e);
         throw e;
     }
-
 }
 
-ingestDailyWinnerCron()
 
