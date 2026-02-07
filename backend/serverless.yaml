@@ -4,6 +4,33 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: us-east-1
+  iam: 
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+          Resource:
+            - Fn::Sub: arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/ticker-winner
+
+resources:
+  Resources:
+    TickerWinnerTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ticker-winner
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: Date
+            AttributeType: S
+        KeySchema:
+          - AttributeName: Date
+            KeyType: HASH
+
+
+  
+
   
 functions:
   hello:
@@ -12,6 +39,12 @@ functions:
       - httpApi:
           path: /hello
           method: GET
+  
+  ingestDailyWinner:
+    handler: cron/handler.ingestDailyWinner
+    events:
+      - schedule: 
+          rate: cron(10 21 ? * MON-FRI *)
 
 plugins:
   - serverless-offline
