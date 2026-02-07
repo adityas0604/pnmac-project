@@ -21,7 +21,11 @@
   },
   "homepage": "https://github.com/adityas0604/pnmac-project#readme",
   "devDependencies": {
+    "dotenv": "^17.2.4",
     "serverless": "^3.40.0",
     "serverless-offline": "^14.4.0"
+  },
+  "dependencies": {
+    "@massive.com/client-js": "^10.3.0"
   }
 }

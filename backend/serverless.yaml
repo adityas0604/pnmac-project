@@ -41,10 +41,10 @@ functions:
           method: GET
   
   ingestDailyWinner:
-    handler: cron/handler.ingestDailyWinner
+    handler: cron/handler.ingestDailyWinnerCron
     events:
       - schedule: 
-          rate: cron(10 21 ? * MON-FRI *)
+          rate: cron(10 5 ? * TUE-SAT *)
 
 plugins:
   - serverless-offline
