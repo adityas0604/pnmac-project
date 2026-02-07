@@ -1,0 +1,27 @@
+{
+  "name": "pnmac-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "serverless deploy",
+    "dev": "serverless offline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityas0604/pnmac-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/adityas0604/pnmac-project/issues"
+  },
+  "homepage": "https://github.com/adityas0604/pnmac-project#readme",
+  "devDependencies": {
+    "serverless": "^3.40.0",
+    "serverless-offline": "^14.4.0"
+  }
+}
