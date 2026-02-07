@@ -4,10 +4,12 @@ import { insertWinnerData } from "./db.js";
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
-export const ingestWinner = async () => {
+export const ingestWinner = async (dateString = null) => {
     const completeStocksData = []
 
-    const dateString = getPreviousETDate();
+    if (!dateString) {
+        dateString = getPreviousETDate();
+    }
     
     let percentageChange = 0;
     let winner = { PercentageChange: 0 };
