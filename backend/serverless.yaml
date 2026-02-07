@@ -39,9 +39,6 @@ resources:
             KeyType: RANGE       # Sort Key
 
 
-  
-
-  
 functions:
   hello:
     handler: handler.hello
@@ -55,6 +52,13 @@ functions:
     events:
       - schedule: 
           rate: cron(10 5 ? * TUE-SAT *)
+  
+  movers:
+    handler: api/handler.getTopMovers
+    events:
+      - httpApi:
+          path: /movers
+          method: GET
 
 plugins:
   - serverless-offline
