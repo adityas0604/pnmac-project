@@ -10,7 +10,7 @@ provider:
         - Effect: Allow
           Action:
             - dynamodb:PutItem
-            - dynamodb:GetItem
+            - dynamodb:Query
           Resource:
             - Fn::Sub: arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/ticker-winner
 
@@ -19,6 +19,9 @@ provider:
             - secretsmanager:GetSecretValue
           Resource:
             - Fn::Sub: arn:aws:secretsmanager:${self:provider.region}:${aws:accountId}:secret:pnmac_project-*
+  httpApi:
+    name: pnmac-project-backend
+    cors: true
 
 resources:
   Resources:
@@ -39,9 +42,6 @@ resources:
             KeyType: RANGE       # Sort Key
 
 
-  
-
-  
 functions:
   hello:
     handler: handler.hello
@@ -49,13 +49,20 @@ functions:
       - httpApi:
           path: /hello
           method: GET
-  
+    
   ingestDailyWinner:
     handler: cron/handler.ingestDailyWinnerCron
     events:
       - schedule: 
           rate: cron(10 5 ? * TUE-SAT *)
-
+  
+  movers:
+    handler: api/handler.getTopMovers
+    events:
+      - httpApi:
+          path: /movers
+          method: GET
+        
 plugins:
   - serverless-offline
 
