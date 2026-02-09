@@ -36,7 +36,7 @@ export default function MoversTable({ rows }) {
                 </tr>
               ) : (
                 rows.map((r) => {
-                  const pct = Number(r.percentChange);
+                  const pct = Number(r.PercentageChange);
                   const pctClass =
                     Number.isNaN(pct)
                       ? "text-slate-300"
@@ -47,18 +47,18 @@ export default function MoversTable({ rows }) {
                       : "text-slate-300";
   
                   return (
-                    <tr key={`${r.date}-${r.ticker}`} className="hover:bg-white/5">
-                      <td className="px-4 py-3 text-sm text-slate-200">{r.date}</td>
+                    <tr key={`${r.Date}-${r.Ticker}`} className="hover:bg-white/5">
+                      <td className="px-4 py-3 text-sm text-slate-200">{r.Date}</td>
                       <td className="px-4 py-3 text-sm font-mono text-slate-200">
-                        {r.ticker}
+                        {r.Ticker}
                       </td>
                       <td
                         className={`px-4 py-3 text-right text-sm font-mono ${pctClass}`}
                       >
-                        {fmtPct(r.percentChange)}
+                        {fmtPct(r.PercentageChange)}
                       </td>
                       <td className="px-4 py-3 text-right text-sm font-mono text-slate-200">
-                        {fmtMoney(r.close)}
+                        {fmtMoney(r.Close)}
                       </td>
                     </tr>
                   );
