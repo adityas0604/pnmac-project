@@ -1,6 +1,13 @@
 # Node
 node_modules/
 package-lock.json
+build/
+frontend/build/
+frontend/node_modules/
+frontend/package-lock.json
+amplify/
+amplify/*
+frontend/.amplify/
 
 # Serverless
 .serverless/
@@ -14,6 +21,7 @@ coverage/
 logs
 *.log
 lerna-debug.log
+*.zip
 
 # OS files
 .DS_Store
