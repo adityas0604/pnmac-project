@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMoversMock } from "../api/movers.js";
+import { fetchMovers } from "../api/movers.js";
 import MoversTable from "../components/MoversTable";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       try {
         setStatus("loading");
         setError("");
-        const data = await getMoversMock();
+        const data = await fetchMovers();
         if (!alive) return;
         setRows(data);
         setStatus("success");
