@@ -26,8 +26,8 @@ export const ingestWinner = async (dateString = null) => {
             winner = {
                 Ticker: ticker,
                 PercentageChange: percentageChange,
-                Open: stockData.open,
-                Close: stockData.close,
+                Open: stockData.open * 1000,
+                Close: stockData.close * 1000,
             };
         }
     }

@@ -23,9 +23,13 @@ export const getLastNDaysMovers = async (n = 7) => {
     order: "desc", // newest first
   });
 
-  return winners.map(item => {
-    delete item.PK;
-    return item;
+  return winners.map(({ PK, Open, Close, ...rest }) => {
+    //  convert cents → dollars
+    return {
+      ...rest,
+      Open: Open / 1000,
+      Close: Close / 1000,
+    };
   });
 
 };
