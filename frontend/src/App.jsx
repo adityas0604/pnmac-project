@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { getMoversMock } from "../api/movers.js";
+import MoversTable from "../components/MoversTable";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [rows, setRows] = useState([]);
+  const [status, setStatus] = useState("loading"); // loading | success | error
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let alive = true;
+
+    (async () => {
+      try {
+        setStatus("loading");
+        setError("");
+        const data = await getMoversMock();
+        if (!alive) return;
+        setRows(data);
+        setStatus("success");
+      } catch (e) {
+        if (!alive) return;
+        setError(e?.message ?? "Unknown error");
+        setStatus("error");
+      }
+    })();
+
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="w-full px-6 py-10">   
+        <div className="mb-6">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Stock Winners (Last 7 Days)
+          </h1>
+        </div>
+  
+        {status === "loading" && (
+          <div className="rounded-xl border border-white/10 bg-slate-900/40 p-4 text-slate-300">
+            Loading…
+          </div>
+        )}
+  
+        {status === "error" && (
+          <div className="rounded-xl border border-red-500/30 bg-red-950/20 p-4">
+            <div className="font-semibold text-red-200">Couldn’t load movers</div>
+            <div className="mt-1 text-sm text-red-200/80">{error}</div>
+          </div>
+        )}
+  
+        {status === "success" && <MoversTable rows={rows} />}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
+  
 }
 
-export default App
+export default App;
