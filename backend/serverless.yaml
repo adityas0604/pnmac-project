@@ -1,4 +1,5 @@
 service: pnmac-project-backend
+useDotenv: true
 
 provider:
   name: aws
@@ -19,6 +20,9 @@ provider:
             - secretsmanager:GetSecretValue
           Resource:
             - Fn::Sub: arn:aws:secretsmanager:${self:provider.region}:${aws:accountId}:secret:pnmac_project-*
+  environment:
+    SECRET_NAME: ${env:SECRET_NAME}
+    
   httpApi:
     name: pnmac-project-backend
     cors: true

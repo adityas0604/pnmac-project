@@ -7,7 +7,7 @@ import {
     GetSecretValueCommand,
   } from "@aws-sdk/client-secrets-manager";
   
-  const secret_name = "pnmac_project";
+  const secret_name = process.env.SECRET_NAME;
   
   const client = new SecretsManagerClient({
     region: "us-east-1",
