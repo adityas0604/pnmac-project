@@ -1,8 +1,8 @@
-# 📈 Stocks Serverless Pipeline
+# Stocks Serverless Pipeline
 
 This project implements an automated, serverless data pipeline on AWS that tracks a daily "Top Mover" stock from a predefined watchlist. The system runs automatically every day, stores results in DynamoDB, and exposes a REST API that a frontend uses to visualize the last 7 days of top movers.
 
-## 🎯 Goal
+## Goal
 Each day, the system:
 1. Fetches daily stock data for a fixed watchlist:
 ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA"]
@@ -13,7 +13,7 @@ Each day, the system:
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 This project uses the following AWS services:
 
@@ -25,7 +25,7 @@ This project uses the following AWS services:
 
 ---
 
-## ✅ Prerequisites (Required)
+## Prerequisites (Required)
 
 Before deploying or running this project, you must have:
 
@@ -71,16 +71,16 @@ Go to: https://www.massive.com and create an account.
 
 Fetch your defualt API KEY and store in AWS Secret Manager and keep a note of the secret name to configure it in the environment variable.
 
-# 🚀 Setup Instructions
+# Setup Instructions
 
-## 1️⃣ Clone the Repository
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/adityas0604/pnmac-project.git
 cd PNMAC-PROJECT
 ```
 
-## 2️⃣ Backend Set Up
+## 2. Backend Set Up
 
 ### Install Dependencies
 
@@ -101,7 +101,7 @@ A sample environment file is provided in the repository as `.env.example` with a
 npm run deploy
 ```
 
-### 🌱 Seed DynamoDB with the required data of past 7 trading days
+### Seed DynamoDB with the required data of past 7 trading days
 
 To populate DynamoDB with the last **7 trading days** of “winner” records (useful for first-time setup or testing)
 
@@ -114,7 +114,7 @@ npm run seed
 npm run dev
 ```
 
-## 2️⃣ 🌐 Frontend Setup (AWS Amplify CLI)
+## 3. Frontend Setup (AWS Amplify CLI)
 
 This project’s frontend is hosted using **AWS Amplify CLI** (no AWS Console setup required).
 
