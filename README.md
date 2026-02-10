@@ -99,6 +99,14 @@ A sample environment file is provided in the repository as `.env.example` with a
 npm run deploy
 ```
 
+### 🌱 Seed DynamoDB with the required data of past 7 trading days
+
+To populate DynamoDB with the last **7 trading days** of “winner” records (useful for first-time setup or testing)
+
+```bash
+npm run seed
+```
+
 **Important:** In addition to your local `.env` file, you must also set the same environment variables in your AWS Lambda configuration after deployment.
 
 
