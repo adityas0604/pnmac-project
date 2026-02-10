@@ -77,7 +77,7 @@ Fetch your defualt API KEY and store in AWS Secret Manager and keep a note of th
 
 ```bash
 git clone https://github.com/adityas0604/pnmac-project.git
-cd PNMAC-PROJECT
+cd pnmac-project
 ```
 
 ## 2. Backend Set Up
