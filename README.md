@@ -21,7 +21,7 @@ This project uses the following AWS services:
 - **AWS Lambda (Ingestion)** → Fetches stock data & computes winner  
 - **DynamoDB** → Stores daily top movers  
 - **API Gateway + Lambda** → Serves `GET /movers` endpoint  
-- **S3 / Amplify** → Hosts frontend dashboard  
+- **AWS Amplify** → Hosts frontend dashboard  
 
 ---
 
@@ -76,7 +76,7 @@ Fetch your defualt API KEY and store in AWS Secret Manager and keep a note of th
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone <YOUR_GITHUB_REPO_URL>
+git clone https://github.com/adityas0604/pnmac-project.git
 cd PNMAC-PROJECT
 ```
 
@@ -130,6 +130,11 @@ cd frontend
 npm i
 amplify add hosting
 ```
+
+### Configure Environment Variables
+
+A sample environment file is provided in the frontend folder as `.env.example` with a description. Set up the path to AWS API Gateway.
+
 ### Publish (Deploy) the Frontend
 
 ```bash
