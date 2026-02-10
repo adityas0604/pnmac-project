@@ -124,10 +124,6 @@ amplify configure
 Add Amplify Hosting (one-time)
 
 ```bash
-amplify add hosting
-```
-
-```bash
 cd frontend
 npm i
 amplify add hosting
