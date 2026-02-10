@@ -22,6 +22,7 @@ provider:
             - Fn::Sub: arn:aws:secretsmanager:${self:provider.region}:${aws:accountId}:secret:pnmac_project-*
   environment:
     SECRET_NAME: ${env:SECRET_NAME}
+    MASSIVE_API_KEY_NAME: ${env:MASSIVE_API_KEY_NAME}
     
   httpApi:
     name: pnmac-project-backend
@@ -56,6 +57,7 @@ functions:
     
   ingestDailyWinner:
     handler: cron/handler.ingestDailyWinnerCron
+    timeout: 120
     events:
       - schedule: 
           rate: cron(10 5 ? * TUE-SAT *)
