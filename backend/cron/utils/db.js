@@ -3,7 +3,6 @@
 import { addItem } from "../../shared/dbClient.js";
 import { WINNER_TABLE } from "../../shared/variables.js";
 
-
 export async function insertWinnerData(winner) {
   if (!winner?.Date) {
     throw new Error("winner.Date is required");
