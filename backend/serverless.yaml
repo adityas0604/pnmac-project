@@ -21,8 +21,8 @@ provider:
           Resource:
             - Fn::Sub: arn:aws:secretsmanager:${self:provider.region}:${aws:accountId}:secret:pnmac_project-*
   environment:
-    SECRET_NAME: ${env:SECRET_NAME}
-    MASSIVE_API_KEY_NAME: ${env:MASSIVE_API_KEY_NAME}
+    SECRET_NAME: ${env:SECRET_NAME, 'secret-name'}
+    MASSIVE_API_KEY_NAME: ${env:MASSIVE_API_KEY_NAME, 'massive-api-key-name'}
     
   httpApi:
     name: pnmac-project-backend
