@@ -13,23 +13,23 @@ import { getDdb } from "./dynamoClient.js";
  */
 export async function addItem(params) {
   
-  if (!tableName) {
+  if (!params.tableName) {
     throw new Error("tableName is required");
   }
-  if (!item || typeof item !== "object") {
+  if (!params.item || typeof params.item !== "object") {
     throw new Error("item must be a non-null object");
   }
 
   const ddb = getDdb();
 
-  const params = {
-    TableName: tableName,
-    Item: item,
+  const makeParams = {
+    TableName: params.tableName,
+    Item: params.item,
     ...(params.condition && { ConditionExpression: params.condition }),
-    ...(params.expressionAttributeNames && { ExpressionAttributeNames: params.expressionAttributeNames }),
+    ...(params.attributeNames && { ExpressionAttributeNames: params.attributeNames }),
   };
 
-  const command = new PutCommand(params);
+  const command = new PutCommand(makeParams);
 
   return ddb.send(command);
 }
