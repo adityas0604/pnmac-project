@@ -11,7 +11,8 @@ import { getDdb } from "./dynamoClient.js";
  * @param {Object} params.item - The item to insert
  * @param {string} [params.condition] - Optional ConditionExpression
  */
-export async function addItem({ tableName, item, condition, expressionAttributeNames }) {
+export async function addItem(params) {
+  
   if (!tableName) {
     throw new Error("tableName is required");
   }
@@ -24,15 +25,9 @@ export async function addItem({ tableName, item, condition, expressionAttributeN
   const params = {
     TableName: tableName,
     Item: item,
+    ...(params.condition && { ConditionExpression: params.condition }),
+    ...(params.expressionAttributeNames && { ExpressionAttributeNames: params.expressionAttributeNames }),
   };
-
-  if (condition) {
-    params.ConditionExpression = condition;
-  }
-  
-  if (expressionAttributeNames) {
-    params.ExpressionAttributeNames = expressionAttributeNames;
-  }
 
   const command = new PutCommand(params);
 
