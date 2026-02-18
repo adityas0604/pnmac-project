@@ -2,8 +2,7 @@ import { VITE_BASE_URL } from "../config.js";
 
 export async function fetchMovers() {
   const res = await fetch(`${VITE_BASE_URL}/movers`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
+    method: "GET"
   });
 
   if (!res.ok) {
