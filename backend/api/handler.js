@@ -2,8 +2,7 @@ import { getLastNDaysMovers } from "./utils/db.js";
 
 export const getTopMovers = async (event) => {
     try{
-        // 8 days to include the 7th day, 8th is ignored
-        const topMovers = await getLastNDaysMovers(8);
+        const topMovers = await getLastNDaysMovers();
         return {
             statusCode: 200,
             headers: {
