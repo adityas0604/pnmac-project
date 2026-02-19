@@ -5,12 +5,12 @@ variable "region" {
 
 variable "service_name" {
   type    = string
-  default = "pnmac-project-backend"
+  default = "pnmac-project-backend-tf"
 }
 
 variable "table_name" {
   type    = string
-  default = "ticker-winner"
+  default = "ticker-winner-tf"
 }
 
 variable "secret_name" {
@@ -24,18 +24,13 @@ variable "massive_api_key_name" {
 }
 
 # Paths to your zipped Lambda artifacts
-variable "ingest_zip_path" {
+variable "cron_zip_path" {
   type    = string
-  default = "../dist/ingestDailyWinner.zip"
+  default = "../dist/cron.zip"
 }
 
-variable "movers_zip_path" {
-  type    = string
-  default = "../dist/movers.zip"
-}
+#variable "movers_zip_path" {
+#  type    = string
+#  default = "../dist/movers.zip"
+#}
 
-# CRON expression for the ingest daily winner lambda
-variable "ingest_cron_expression" {
-  type    = string
-  default = "cron(10 5 ? * TUE-SAT *)"
-}
