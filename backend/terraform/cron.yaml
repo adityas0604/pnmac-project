@@ -1,0 +1,5 @@
+ingestDailyStockWinner:
+  handler: cron/handler.ingestDailyWinnerCron
+  schedule: cron(20 5 ? * TUE-SAT *)
+  timeout: 120
+  memory_size: 256

@@ -9,11 +9,13 @@ import {
   
   const secret_name = process.env.SECRET_NAME;
   
+  let cachedSecret = null;
   const client = new SecretsManagerClient({
     region: "us-east-1",
   });
   
   export const loadSecrets = async () => {
+    
     let response;
     
     try {
@@ -29,5 +31,14 @@ import {
         throw error;
     }
     const secret = JSON.parse(response.SecretString);
+    cachedSecret = secret;
     return secret;
+  };
+
+  export const getSecret = async (secretName) => {
+    if (cachedSecret) {
+      return cachedSecret[secretName];
+    }
+    await loadSecrets();
+    return cachedSecret[secretName];
   };

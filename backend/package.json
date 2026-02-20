@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "serverless deploy",
     "dev": "serverless offline",
-    "seed": "node shared/seeddb.js"
+    "seed": "node shared/seeddb.js",
+    "build:cron": "rm -rf dist/cron && mkdir -p dist/cron  && esbuild cron/handler.js --bundle --platform=node  --format=cjs --target=node20  --outfile=dist/cron/handler.cjs && cd dist && zip -r cron.zip cron",
+    "build:api": "rm -rf dist/api && mkdir -p dist/api && esbuild api/handler.js --bundle --platform=node --format=cjs --target=node20 --outfile=dist/api/handler.cjs && cd dist && zip -r api.zip api",
+    "build": "rm -rf dist && mkdir -p dist && npm run build:cron && npm run build:api"
   },
   "repository": {
     "type": "git",
