@@ -8,6 +8,8 @@ frontend/package-lock.json
 amplify/
 amplify/*
 frontend/.amplify/
+frontend/terraform/.terraform/
+
 
 # Serverless
 .serverless/
@@ -34,17 +36,20 @@ backend/package-lock.json
 backend/.aws-sam/
 backend/coverage/
 backend/logs/
-backend/terraform/.terraform/
+
+
+*/terraform/.terraform/
 backend/terraform/.terraform.lock.hcl
-backend/terraform/*.tfstate.*
-backend/terraform/*.tfstate
+*/terraform/.terraform.lock.hcl
+*/terraform/*.tfstate.*
+*/terraform/*.tfstate
 
-backend/terraform/crash.log
-backend/terraform/crash.log.*
+*/terraform/crash.log
+*/terraform/crash.log.*
 
-backend/terraform/.terraformrc
-backend/terraform/terraform.rc
-backend/terraform/terraform.tfvars
+*/terraform/.terraformrc
+*/terraform/terraform.rc
+*/terraform/terraform.tfvars
 
 backend/dist/*
 
