@@ -95,10 +95,25 @@ A sample environment file is provided in the repository as `.env.example` with a
 
 **Important:** In addition to your local `.env` file, you must also set the same environment variables in your AWS Lambda configuration after deployment.
 
-### Deploy the Infrastructure
+### Deploy the Infrastructure 
+
+#### Option 1: Serverless Framework
 
 ```bash
 npm run deploy
+```
+#### Option 2: Terraform
+
+```
+npm run build
+
+cd terraform
+
+terraform init
+
+terraform plan # Optional: To see the chages that Terraform will make to your infrastructure
+
+npm run deploy:terraform
 ```
 
 ### Seed DynamoDB with the required data of past 7 trading days
@@ -114,11 +129,19 @@ npm run seed
 npm run dev
 ```
 
-## 3. Frontend Setup (AWS Amplify CLI)
+## 3. Frontend Setup 
 
-This project’s frontend is hosted using **AWS Amplify CLI** (no AWS Console setup required).
+### Install dependencies and Set up Env Variable
 
-#### Install and Set Up Amplify CLI  (one-time)
+``` bash
+cd frontend
+npm i
+```
+### Deploy Frontend Resources
+
+#### Option 1: AWS Amplify
+
+##### Install and Set Up Amplify CLI  (one-time)
 
 ```bash
 npm install -g @aws-amplify/cli
@@ -128,23 +151,35 @@ Configure Amplify with your AWS credentials:
 ```bash
 amplify configure
 ```
-Add Amplify Hosting (one-time)
 
 ```bash
 cd frontend
-npm i
 amplify add hosting
 ```
-
-### Configure Environment Variables
-
-A sample environment file is provided in the frontend folder as `.env.example` with a description. Set up the path to AWS API Gateway.
-
-### Publish (Deploy) the Frontend
+##### Deploy to AWS Amplify
 
 ```bash
 npm run deploy
 ```
+#### Option 2: Private S3 bucket + CloudFront 
+
+##### Initialize Terraform
+
+```bash
+cd terraform
+terraform init
+terraform plan # Optional: To see the chages that Terraform will make to your infrastructure
+```
+##### Deploy Infrastructure
+
+```
+npm run deploy:terraform
+```
+
+This will:
+- Build the project
+- Add artificats to S3
+- Invalidate CloudFront cache
 
 ### Run Locally (Optional)
 ```bash
