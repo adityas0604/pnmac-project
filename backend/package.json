@@ -8,8 +8,8 @@
     "deploy": "serverless deploy",
     "dev": "serverless offline",
     "seed": "node shared/seeddb.js",
-    "build:cron": "rm -rf dist && mkdir -p dist/cron && esbuild cron/handler.js --bundle --platform=node --target=node20 --format=esm --outfile=dist/cron/handler.js && cd dist && zip -r cron.zip cron",
-    "build:api": "rm -rf dist/api && mkdir -p dist/api && esbuild api/handler.js --bundle --platform=node --target=node20 --format=esm --outfile=dist/api/handler.js && cd dist && zip -r api.zip api",
+    "build:cron": "rm -rf dist/cron && mkdir -p dist/cron  && esbuild cron/handler.js --bundle --platform=node  --format=cjs --target=node20  --outfile=dist/cron/handler.cjs && cd dist && zip -r cron.zip cron",
+    "build:api": "rm -rf dist/api && mkdir -p dist/api && esbuild api/handler.js --bundle --platform=node --format=cjs --target=node20 --outfile=dist/api/handler.cjs && cd dist && zip -r api.zip api",
     "build": "rm -rf dist && mkdir -p dist && npm run build:cron && npm run build:api"
   },
   "repository": {

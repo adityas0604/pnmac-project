@@ -1,0 +1,5 @@
+movers:
+  handler: api/handler.getTopMovers
+  route_key: GET /movers
+  timeout: 30
+  memory_size: 256

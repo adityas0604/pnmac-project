@@ -37,12 +37,14 @@ backend/logs/
 backend/terraform/.terraform/
 backend/terraform/.terraform.lock.hcl
 backend/terraform/*.tfstate.*
+backend/terraform/*.tfstate
 
 backend/terraform/crash.log
 backend/terraform/crash.log.*
 
 backend/terraform/.terraformrc
 backend/terraform/terraform.rc
+backend/terraform/terraform.tfvars
 
 backend/dist/*
 

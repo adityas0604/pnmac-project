@@ -5,17 +5,12 @@ variable "region" {
 
 variable "service_name" {
   type    = string
-  default = "pnmac-project-backend-tf"
-}
-
-variable "table_name" {
-  type    = string
-  default = "ticker-winner-tf"
+  default = "pnmac-stocks-project"
 }
 
 variable "secret_name" {
   type    = string
-  default = "pnmac-project"
+  default = "pnmac_project"
 }
 
 variable "massive_api_key_name" {
