@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "serverless deploy",
+    "deploy:terraform": "terraform -chdir=./terraform apply -auto-approve",
     "dev": "serverless offline",
     "seed": "node shared/seeddb.js",
     "build:cron": "rm -rf dist/cron && mkdir -p dist/cron  && esbuild cron/handler.js --bundle --platform=node  --format=cjs --target=node20  --outfile=dist/cron/handler.cjs && cd dist && zip -r cron.zip cron",
