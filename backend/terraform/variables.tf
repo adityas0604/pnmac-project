@@ -29,8 +29,9 @@ variable "cron_zip_path" {
   default = "../dist/cron.zip"
 }
 
-#variable "movers_zip_path" {
-#  type    = string
-#  default = "../dist/movers.zip"
-#}
+variable "api_zip_path" {
+  type    = string
+  default = "../dist/api.zip"
+}
+
 
