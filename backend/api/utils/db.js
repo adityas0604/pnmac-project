@@ -30,6 +30,8 @@ export const getLastNDaysMovers = async (n = 7) => {
     daysToRetrive++;
   }
 
+  winners = winners.slice(0, n);
+  
   return winners.map(({ PK, Open, Close, ...rest }) => {
     //  convert cents → dollars
     return {
